@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>triangle</title>
+	<style>
+		.tri{
+			height: 0;
+			width: 0;
+			border-color: blue yellow green red;
+			border-width: 10px;
+			border-style: solid;
+			margin-bottom: 10px;
+		}
+		.tri.top{
+			border-color: blue transparent transparent transparent;
+		}
+		.tri.left{
+			border-color: transparent transparent transparent red;
+		}
+		.tri.right{
+			border-color: transparent yellow transparent transparent;
+		}
+		.tri.bottom{
+			border-color: transparent transparent green transparent;
+		}
+		.red1{
+			border-color: transparent transparent transparent red;
+			transform: rotate(135deg);
+		}
+		.green2{
+			border-color: transparent transparent green transparent;
+			transform: rotate(135deg);
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="tri"></div>
+	<div class="tri top"></div>
+	<div class="tri left"></div>
+	<div class="tri right"></div>
+	<div class="tri bottom"></div>	
+	<div class="tri red1"></div>
+	<div class="tri green2"></div>
+</body>
+</html>
