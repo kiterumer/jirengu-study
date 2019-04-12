@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>carousel</title>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .images {
+            display: flex;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .carousel {
+            width: 600px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px 1px rgba(0, 0, 0, .3);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="images" id="images">
+            <img src="https://www.catster.com/wp-content/uploads/2017/10/A-kitten-meowing-with-his-mouth-open.jpg"
+                alt="">
+            <img src="https://static01.nyt.com/images/2018/07/24/well/fat-cat/fat-cat-articleLarge.jpg?quality=75&auto=webp&disable=upscale"
+                alt="">
+            <img src="https://www.doggiedendallas.com/wp-content/uploads/2018/12/image-cat2-min.jpg" alt="">
+            <img src="https://www.earthrangers.com/public/content/wildwire/cat-sleeping-in-bed.jpg" alt="">
+            <img src="https://www.catster.com/wp-content/uploads/2017/10/A-kitten-meowing-with-his-mouth-open.jpg"
+                alt="">
+        </div>
+    </div>
+    <!-- <span id="buttons">
+        <span class='red'>第1张</span>
+        <span>第2张</span>
+        <span>第3张</span>
+        <span>第4张</span>
+    </span> -->
+
+    <script>
+        let _index = 0
+        let timer = setInterval(action, 3000)
+
+        function selectImage(num) {
+            clearInterval(timer)
+            $("#images").animate({
+                left: num * (-600),
+            }, 1000, function () {
+                timer = setInterval(action, 3000);
+                //自动播放检查是否到最后一张
+                if (_index == 4) {
+                    _index = 0;
+                    $("#images").css("left", "0px");
+                }
+            })
+        }
+
+        function action() {
+            _index++
+            selectImage(_index)
+        }
+    </script>
+</body>
+
+</html>

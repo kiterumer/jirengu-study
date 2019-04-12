@@ -1,16 +1,16 @@
-// var allChildren = item3.parentNode.children ;
-// // 伪数组
-// var array = {
-//     length: 0
-// }
-// // 获取item3的兄弟姐妹
-// for (let i = 0; i < allChildren.length; i++){
-//     if(allChildren[i] !== item3){
-//         array[array.length] = allChildren[i];
-//         array.length += 1;
-//     }
-// }
-// console.log(array);
+var allChildren = item3.parentNode.children ;
+// 伪数组
+var array = {
+    length: 0
+}
+// 获取item3的兄弟姐妹
+for (let i = 0; i < allChildren.length; i++){
+    if(allChildren[i] !== item3){
+        array[array.length] = allChildren[i];
+        array.length += 1;
+    }
+}
+console.log(array);
 
 // 封装一下
 function getSiblings(node){  /* API */
@@ -91,45 +91,45 @@ Node.prototype.addClass2 = function(classes){
     });
 }
 
-// console.log(item3.getSiblings())
+console.log(item3.getSiblings())
 // 用call显示this
-// item3.getSiblings.call(item3)
-// item3.addClass2(['q','w','e'])
-// item3.addClass2(item3,['q','w','e'])
+item3.getSiblings.call(item3)
+item3.addClass2(['q','w','e'])
+item3.addClass2(item3,['q','w','e'])
 
 
 // 在Node原型上增加方法并不好，如果有多个人修改容易造成冲突
 
 // 自己创建一个新Node构造函数
 
-// window.Node2 = function(node){
-//     return {
-//         getSiblings:function(){
-//             var allChildren = node.parentNode.children ;
-//             // 伪数组
-//             var array = {
-//             length: 0
-//             }
-//             // 获取node的兄弟姐妹
-//             for (let i = 0; i < allChildren.length; i++){
-//             if(allChildren[i] !== node){
-//             // array是伪数组，没有push方法
-//             array[array.length] = allChildren[i];
-//             array.length += 1;
-//             }
-//             }
-//             return array
-//         },
-//         addClass2:function(classes){
-//             classes.forEach(value => {
-//                 node.classList.add(value)
-//             });
-//         }
-//     }
-// }
-// var node2 = Node2(item3)
-// node2.getSiblings()
-// node2.addClass2(['p','o'])
+window.Node2 = function(node){
+    return {
+        getSiblings:function(){
+            var allChildren = node.parentNode.children ;
+            // 伪数组
+            var array = {
+            length: 0
+            }
+            // 获取node的兄弟姐妹
+            for (let i = 0; i < allChildren.length; i++){
+            if(allChildren[i] !== node){
+            // array是伪数组，没有push方法
+            array[array.length] = allChildren[i];
+            array.length += 1;
+            }
+            }
+            return array
+        },
+        addClass2:function(classes){
+            classes.forEach(value => {
+                node.classList.add(value)
+            });
+        }
+    }
+}
+var node2 = Node2(item3)
+node2.getSiblings()
+node2.addClass2(['p','o'])
 
 // 把Node2改名为jQuery
 window.jQuery = function(nodeOrSelector){
