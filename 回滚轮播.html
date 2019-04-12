@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>回滚轮播</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .images {
+            display: flex;
+            transition: all 0.5s;
+        }
+
+        .carousel {
+            width: 600px;
+            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 0 8px 1px rgba(0, 0, 0, .3);
+            border-radius: 6px;
+        }
+
+        .active {
+            color: red;
+        }
+
+        #buttons>span {
+            margin: 0 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="images" id="images">
+            <img src="https://www.catster.com/wp-content/uploads/2017/10/A-kitten-meowing-with-his-mouth-open.jpg"
+                alt="">
+            <img src="https://static01.nyt.com/images/2018/07/24/well/fat-cat/fat-cat-articleLarge.jpg?quality=75&auto=webp&disable=upscale"
+                alt="">
+            <img src="https://www.doggiedendallas.com/wp-content/uploads/2018/12/image-cat2-min.jpg" alt="">
+            <img src="https://www.earthrangers.com/public/content/wildwire/cat-sleeping-in-bed.jpg" alt="">
+        </div>
+    </div>
+    <span id="buttons">
+        <span class='active'>第1张</span>
+        <span>第2张</span>
+        <span>第3张</span>
+        <span>第4张</span>
+    </span>
+    <script>
+        let buttons = $('#buttons > span')
+        // 遍历按钮绑定鼠标点击事件
+        for (let i = 0; i < buttons.length; i++) {
+            $(buttons[i]).on('click', function (e) {
+                let index = $(e.currentTarget).index()
+                let p = index * (-600)
+                $('#images').css({
+                    'transform': 'translateX(' + p + 'px)'
+                })
+                n = index
+                buttons.eq(n).addClass('active').siblings('.active').removeClass('active')
+            })
+        }
+
+        let n = 0
+        let size = buttons.length
+        let timer = setTimer()
+
+
+        // 鼠标移入
+        $('.carousel').on('mouseenter', function () {
+            window.clearInterval(timer)
+        })
+        // 鼠标移出
+        $('.carousel').on('mouseleave', function () {
+
+            timer = setTimer()
+        })
+        // 设定定时器
+        function setTimer() {
+            return setInterval(() => {
+                n = n + 1
+                buttonClick(n)
+            }, 3000)
+        }
+        // 鼠标点击
+        function buttonClick(n) {
+            num = n < 4 ? n : n % size
+            buttons.eq(num).trigger('click')
+        }
+    </script>
+</body>
+
+</html>
