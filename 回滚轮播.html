@@ -24,12 +24,19 @@
         }
 
         .active {
-            color: red;
+            background-color:#007aff;
+            transform: scale(1.2)
         }
 
-        #buttons>span {
+        .buttons>span {
             margin: 0 8px;
             cursor: pointer;
+            display: inline-block;
+            width:20px;
+            height:8px;
+            border-radius: 6px;
+            box-shadow: 0 0 1px 1px rgba(0,0,0,.2);
+            transition: all .3s
         }
     </style>
 </head>
@@ -45,11 +52,11 @@
             <img src="https://www.earthrangers.com/public/content/wildwire/cat-sleeping-in-bed.jpg" alt="">
         </div>
     </div>
-    <span id="buttons">
-        <span class='active'>第1张</span>
-        <span>第2张</span>
-        <span>第3张</span>
-        <span>第4张</span>
+    <span id="buttons" class="buttons">
+        <span class='active'></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </span>
     <script>
         let buttons = $('#buttons > span')
@@ -59,7 +66,7 @@
                 let index = $(e.currentTarget).index()
                 let p = index * (-600)
                 $('#images').css({
-                    'transform': 'translateX(' + p + 'px)'
+                    transform: `translateX(${p}px)`
                 })
                 n = index
                 buttons.eq(n).addClass('active').siblings('.active').removeClass('active')
@@ -85,7 +92,7 @@
             return setInterval(() => {
                 n = n + 1
                 buttonClick(n)
-            }, 3000)
+            }, 5000)
         }
         // 鼠标点击
         function buttonClick(n) {
